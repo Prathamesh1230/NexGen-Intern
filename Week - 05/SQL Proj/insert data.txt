@@ -1,0 +1,24 @@
+USE library_system;
+
+-- Insert Books
+INSERT INTO books (title, author, category, total_copies, available_copies) VALUES
+('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', 5, 4),
+('1984', 'George Orwell', 'Dystopian', 4, 3),
+('Harry Potter', 'J.K. Rowling', 'Fantasy', 6, 5),
+('The Hobbit', 'J.R.R. Tolkien', 'Fantasy', 3, 2),
+('Clean Code', 'Robert Martin', 'Programming', 5, 5);
+
+-- Insert Members
+INSERT INTO members (name, email, join_date, status) VALUES
+('Raj', 'Raj@email.com', '2025-01-10', 'active'),
+('Rahul', 'rahul@email.com', '2025-02-15', 'active'),
+('Priya', 'priya@email.com', '2025-03-20', 'active'),
+('Amit', 'amit@email.com', '2025-04-25', 'inactive');
+
+-- Insert Book Issues
+INSERT INTO book_issues (book_id, member_id, issue_date, due_date, return_date) VALUES
+(1, 1, '2025-10-20', '2025-11-03', NULL),
+(2, 2, '2025-10-15', '2025-10-29', NULL),
+(3, 3, '2025-10-25', '2025-11-18', NULL),
+(1, 2, '2025-09-10', '2025-09-24', '2025-09-23'),
+(4, 1, '2025-10-28', '2025-11-18', NULL);

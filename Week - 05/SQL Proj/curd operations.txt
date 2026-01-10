@@ -1,0 +1,17 @@
+USE library_system;
+
+-- CREATE: Add new book
+INSERT INTO books (title, author, category, total_copies, available_copies)
+VALUES ('Atomic Habits', 'James Clear', 'Self-help', 3, 3);
+
+-- READ: View books
+SELECT * FROM books;
+
+-- UPDATE: Update book copies
+UPDATE books SET total_copies = 8 WHERE book_id = 8;
+
+-- DELETE: Remove a book
+DELETE FROM books WHERE book_id = 11;
+
+-- Verify all operations
+SELECT * FROM books;

@@ -1,0 +1,44 @@
+# 1st - How many books are available? 
+
+USE library_system;
+
+SELECT 
+    SUM(total_copies) AS total_books_in_library,
+    SUM(available_copies) AS total_available_books,
+    SUM(total_copies - available_copies) AS currently_issued_books
+FROM books;
+
+# 2nd  Which member has borrowed which book?
+SELECT 
+    m.name AS member_name,
+    b.title AS book_title,
+    bi.issue_date,
+    bi.due_date
+FROM book_issues bi
+JOIN members m ON bi.member_id = m.member_id
+JOIN books b ON bi.book_id = b.book_id
+WHERE bi.return_date IS NULL;
+
+# 3rd  Which books are overdue?
+SELECT 
+    m.name AS member_name,
+    b.title AS book_title,
+    bi.due_date,
+    DATEDIFF(CURDATE(), bi.due_date) AS days_overdue
+FROM book_issues bi
+JOIN members m ON bi.member_id = m.member_id
+JOIN books b ON bi.book_id = b.book_id
+WHERE bi.return_date IS NULL 
+  AND bi.due_date < CURDATE()
+ORDER BY days_overdue DESC;
+
+# 4 Top 5 most borrowed books
+SELECT 
+    b.title,
+    b.author,
+    COUNT(bi.issue_id) AS times_borrowed
+FROM books b
+LEFT JOIN book_issues bi ON b.book_id = bi.book_id
+GROUP BY b.book_id, b.title, b.author
+ORDER BY times_borrowed DESC
+LIMIT 5;

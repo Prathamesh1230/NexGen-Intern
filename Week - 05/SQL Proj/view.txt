@@ -1,0 +1,5 @@
+USE library_system;
+
+-- View all books
+SELECT * FROM books;
+SELECT * FROM book_issues;
